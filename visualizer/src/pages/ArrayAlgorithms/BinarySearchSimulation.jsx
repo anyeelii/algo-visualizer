@@ -17,15 +17,15 @@ export default function BinarySearchSimulation() {
     const array = arrayInput.split(",").map(num => parseInt(num.trim()));
     const target = parseInt(targetInput);
 
-    const response = await fetch("http://localhost:8000/algorithms/api/array-searches/binary/",
-      { method: "POST",
-        headers: { "Content-Type": "application/json"},
-        body: JSON.stringify({ array, target })
-      });
-
-      const data = await response.json();
+    try {
+      const data = await runAlgorithm("array", "binary", { array, target });
       setSteps(data.steps || []);
+    }
+    catch (error) {
+      console.error("Failed to fetch simulation steps: ", error);
+    }
   };
+
 
   const nextStep = () => {
     if (currentStep < steps.length) {

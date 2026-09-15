@@ -1,5 +1,5 @@
 export async function runAlgorithm(category, name, body) {
-  const baseUrl = "http://localhost:8000/api";
+  const baseUrl = "http://localhost:8000/algorithms/api";
   const url = `${baseUrl}/${category}-searches/${name}/`;
 
   const response = await fetch(url, {
