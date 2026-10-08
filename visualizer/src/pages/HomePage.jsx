@@ -6,11 +6,11 @@ export default function HomePage() {
   const navigate = useNavigate();
 
   const algorithms = [
-    {
-      title: "Array Algorithms",
-      description: "Visualize alogorithms with array inputs.",
-      path: "/array/"
-    },
+    // {
+    //   title: "Array Algorithms",
+    //   description: "Visualize alogorithms with array inputs.",
+    //   path: "/array/"
+    // },
     {
       title: "Merge Sort",
       category: "Array Algorithms",

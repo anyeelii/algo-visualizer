@@ -13,13 +13,42 @@ class DepthFirstSearchView(APIView):
         visited = []
         steps = []
 
-        def dfs(node):
+        # Added 'parent' to track where we came from
+        def dfs(node, parent=None):
             if node in visited:
                 return
             visited.append(node)
-            steps.append({"visit": node, "visited": visited.copy()})
+            
+            # Action: Visiting a new node
+            steps.append({
+                "action": "visit",
+                "node": node,
+                "parent": parent,
+                "current": len(visited) - 1,
+                "visited": visited.copy()
+            })
+            
             for neighbor in graph.get(node, []):
-                dfs(neighbor)
+                if neighbor not in visited:
+                    dfs(neighbor, node)
+                    
+                    # Action: Backtracking after returning from a neighbor
+                    steps.append({
+                        "action": "backtrack",
+                        "node": node,
+                        "from_node": neighbor,
+                        "current": visited.index(node), # Shift focus back to the parent
+                        "visited": visited.copy()
+                    })
 
-        dfs(start)
+        dfs(start, None)
+        
+        # Action: Finished
+        if steps:
+            steps.append({
+                "action": "complete",
+                "current": -1, # No active node
+                "visited": visited.copy()
+            })
+            
         return Response({"steps": steps}, status=status.HTTP_200_OK)
