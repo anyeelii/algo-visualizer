@@ -2,6 +2,7 @@ import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import HomePage from "./pages/HomePage";
 import BinarySearchSimulation from "./pages/ArrayAlgorithms/BinarySearchSimulation";
 import DFSSimulation from "./pages/GraphAlgorithms/DFSSimulation"; 
+import BFSSimulation from "./pages/GraphAlgorithms/BFSSimulation";
 // import Array from "./pages/ArrayAlgorithms/ArrayHomePage";
 
 function App() {
@@ -31,6 +32,7 @@ function App() {
           {/* <Route path="/array/" element={<Array />} /> */}
           <Route path="/array/binary-search" element={<BinarySearchSimulation />} />
           <Route path="/graph/dfs" element={<DFSSimulation />} />
+          <Route path="/graph/bfs" element={<BFSSimulation />} />
         </Routes>
       </main>
     </Router>
